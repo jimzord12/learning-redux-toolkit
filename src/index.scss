@@ -1,16 +1,26 @@
-@import '~bootstrap/scss/bootstrap';
+@use 'scss/_show-current-breakpoint';
+@use '~bootstrap/scss/bootstrap';
 
-.show-breakpoint::after {
-  display: block;
-  font-size: 20px;
-  color: red;
-  text-transform: uppercase;
-  background: yellow;
-  content: 'Yolo';
+.container {
+  outline: 1px solid red;
 }
 
-@media screen and (width < 576px) {
-  .show-breakpoint::after {
-    content: 'xs';
+h1 {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.add-habit-form form {
+  border-width: 2px;
+  border-color: yellow;
+  border-style: dashed;
+
+  div {
+    background-color: aquamarine;
+    padding: 1rem 1rem;
+  }
+
+  input {
+    width: 100%;
   }
 }

@@ -1,0 +1,56 @@
+.show-breakpoint::after {
+  position: fixed;
+  display: block;
+  font-size: 2rem;
+  font-weight: bolder;
+  color: red;
+  text-transform: uppercase;
+  content: 'Yolo';
+  width: max-content;
+  background: yellow;
+  text-align: end;
+  border-radius: 25%;
+  padding: 2px 8px;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+// div .show-breakpoint::after {
+
+// }
+
+@media screen and (width < 576px) {
+  .show-breakpoint::after {
+    content: 'xs';
+  }
+}
+
+@media screen and (width >= 576px) {
+  .show-breakpoint::after {
+    content: 'sm';
+  }
+}
+
+@media screen and (width >= 768px) {
+  .show-breakpoint::after {
+    content: 'md';
+  }
+}
+
+@media screen and (width >= 992px) {
+  .show-breakpoint::after {
+    content: 'lg';
+  }
+}
+
+@media screen and (width >= 1200px) {
+  .show-breakpoint::after {
+    content: 'x-lg';
+  }
+}
+
+@media screen and (width >= 1400px) {
+  .show-breakpoint::after {
+    content: 'xx-lg';
+  }
+}

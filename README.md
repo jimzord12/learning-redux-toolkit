@@ -1,3 +1,27 @@
+# Simple RTK (Redux Toolkit) Example
+
+## Habit Tracker App
+
+This is a simple habit tracker app that uses Redux Toolkit to manage state. It is a simple example of how to use Redux Toolkit to manage state in a React application.
+
+### Features
+
+- Add a new habit
+- Remove a habit
+- Mark a habit as complete
+- Reset all habits
+
+### Technologies
+
+- React
+- Redux Toolkit
+- TypeScript
+- SCSS
+- Bootstrap 5
+- Vite
+- ESLint
+- Prettier
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -22,7 +46,7 @@ export default tseslint.config({
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 - Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
@@ -31,7 +55,7 @@ export default tseslint.config({
 
 ```js
 // eslint.config.js
-import react from 'eslint-plugin-react'
+import react from 'eslint-plugin-react';
 
 export default tseslint.config({
   // Set the react version
@@ -46,5 +70,5 @@ export default tseslint.config({
     ...react.configs.recommended.rules,
     ...react.configs['jsx-runtime'].rules,
   },
-})
+});
 ```

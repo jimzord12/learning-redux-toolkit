@@ -1,8 +1,36 @@
 @use 'scss/_show-current-breakpoint';
 @use '~bootstrap/scss/bootstrap';
 
-.container {
-  outline: 1px solid red;
+$my-bg: linear-gradient(
+  240deg,
+  rgba(95, 78, 106, 1) 0%,
+  rgba(143, 21, 21, 1) 70%,
+  rgba(252, 176, 69, 1) 100%
+);
+
+$my-app-bg: linear-gradient(
+  0deg,
+  rgba(34, 193, 195, 1) 0%,
+  rgba(253, 187, 45, 1) 100%
+);
+
+body {
+  background: rgb(131, 58, 180);
+  background: $my-app-bg;
+  filter: brightness(75%);
+}
+
+%redish-gradient-bg {
+  background: $my-bg;
+}
+
+.onstreak-pill-bg-color {
+  @extend %redish-gradient-bg;
+}
+
+.not.onstreak-pill-bg-color {
+  @extend %redish-gradient-bg;
+  filter: grayscale(100%);
 }
 
 h1 {

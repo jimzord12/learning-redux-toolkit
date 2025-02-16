@@ -1,16 +1,53 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Habit } from '../types/habits';
+import dummyHabits from '../data/dummyHabits';
+import { idGenerator } from '../utils/generators/generators';
+import { getDateDiff } from '../utils/helpers/dateDifference/getDateDiff';
 
-// const idHabitGen = idGenerator();
+const idHabitGen = idGenerator();
 
-const initialState: Habit[] = [];
+const initialState: Habit[] = dummyHabits;
+
+export type HabitInitProps = Omit<Habit, 'completedDates' | 'createdAt' | 'id'>;
 
 export const habitSlice = createSlice({
   name: 'habits',
   initialState: initialState,
   reducers: {
-    addHabit: (state: Habit[], action: PayloadAction<Habit>) => {
-      state.push(action.payload);
+    addHabit: (state: Habit[], action: PayloadAction<HabitInitProps>) => {
+      const newHabit: Habit = {
+        id: idHabitGen.next().value!,
+        title: action.payload.title,
+        completedDates: [],
+        createdAt: new Date().toString(),
+        frequency: action.payload.frequency,
+        onStreak() {
+          if (this.completedDates.length < 3) return false;
+          const last3Timestamps = this.completedDates.slice(-3).reverse();
+
+          switch (this.frequency) {
+            case 'daily':
+              return last3Timestamps.every((cur, idx, arr) => {
+                const nextDate = arr[idx + 1];
+                return getDateDiff(cur, nextDate, 'day') <= 1.5;
+              });
+
+            case 'weekly':
+              return last3Timestamps.every((cur, idx, arr) => {
+                const nextDate = arr[idx + 1];
+                return getDateDiff(cur, nextDate, 'week') <= 1.5;
+              });
+
+            default:
+              console.error(
+                `📛 [CustomError]: Frequency ${this.frequency} is NOT valid.`
+              );
+              return false;
+          }
+        },
+      };
+
+      state.push(newHabit); // ✅ Moved outside the object
     },
 
     removeHabit: (state, action: PayloadAction<number>) => {

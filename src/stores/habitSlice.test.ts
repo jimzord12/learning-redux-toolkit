@@ -1,7 +1,12 @@
 import { describe, test, expect } from 'vitest';
-import habitReducer, { addHabit, removeHabit, updateHabit } from './habitSlice';
+import habitReducer, {
+  addHabit,
+  HabitInitProps,
+  removeHabit,
+  updateHabit,
+} from './habitSlice';
 
-const testHabit = {
+const createdHabit = {
   id: 123,
   completedDates: [new Date().toString()],
   createdAt: new Date().toString(),
@@ -9,23 +14,32 @@ const testHabit = {
   title: 'Testing Redux Store with Vitest!',
 };
 
+const userInputForHabit = {
+  frequency: 'daily' as 'daily' | 'weekly',
+  title: 'Testing Redux Store with Vitest!',
+} satisfies HabitInitProps;
+
 describe('habit reducer', () => {
   test('should return the initial state', () => {
-    expect(habitReducer(undefined, { type: '' })).toEqual([]);
+    expect(habitReducer([], { type: '' })).toEqual([]);
   });
 
   test('should handle Habit Addition', () => {
-    expect(habitReducer([], addHabit(testHabit))[0].id).toEqual(123);
+    expect(habitReducer([], addHabit(userInputForHabit))[0].id).toEqual(0);
   });
 
   test('should handle Habit Removal', () => {
-    expect(habitReducer([testHabit], removeHabit(testHabit.id))).toEqual([]);
+    expect(habitReducer([createdHabit], removeHabit(createdHabit.id))).toEqual(
+      []
+    );
   });
 
   test('should handle Habit Update', () => {
     expect(
-      habitReducer([testHabit], updateHabit({ id: 123, title: 'Huamahaha' }))[0]
-        .title
+      habitReducer(
+        [createdHabit],
+        updateHabit({ id: 123, title: 'Huamahaha' })
+      )[0].title
     ).toEqual('Huamahaha');
   });
 });

@@ -1,11 +1,34 @@
 import { useState } from 'react';
 import { Habit } from '../types/habits';
+import {
+  useHabitsDispatch,
+  useHabitsSelector,
+} from '../hooks/habitsStoreHooks';
+import { addHabit, removeHabit, updateHabit } from '../stores/habitSlice';
 
-type Props = {};
-
-const AddHabitForm = (props: Props) => {
+const AddHabitForm = () => {
   const [name, setName] = useState('');
   const [frequency, setFrequency] = useState<Habit['frequency']>('daily');
+
+  const habits = useHabitsSelector((state) => state.habits);
+  const dispatch = useHabitsDispatch();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Add logic
+
+    dispatch(
+      addHabit({
+        frequency: frequency,
+        title: name,
+      })
+    );
+
+    // Reseting Fields
+    setName('');
+    setFrequency('daily');
+  };
 
   return (
     <div className="add-habit-form">
@@ -36,7 +59,9 @@ const AddHabitForm = (props: Props) => {
               <option value="weekly">Weekly</option>
             </select>
 
-            <button className="mt-4">Add Habit</button>
+            <button className="mt-4 btn btn-primary shadow-sm">
+              Add Habit
+            </button>
           </div>
         </div>
       </form>

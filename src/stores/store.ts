@@ -5,7 +5,7 @@ const store = configureStore({
   reducer: { habits: habitReducer },
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch
+export type HabitsState = ReturnType<typeof store.getState>;
+export type HabitsDispatch = typeof store.dispatch;
 
 export default store;

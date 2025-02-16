@@ -17,7 +17,7 @@ describe('Redux Store', () => {
     });
 
     store.dispatch(addHabit(testHabit));
-    expect(store.getState().habits[0].title).toBe(
+    expect(store.getState().habits.at(-1)!.title).toBe(
       'Testing Redux Store with Vitest!'
     );
   });

@@ -4,4 +4,5 @@ export interface Habit {
   title: string;
   completedDates: ReturnType<typeof Date>[];
   createdAt: ReturnType<typeof Date>;
+  onStreak?: (this: Habit) => boolean;
 }

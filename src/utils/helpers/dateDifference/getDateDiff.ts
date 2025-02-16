@@ -22,8 +22,8 @@ export const getDateDiff = (
 
   const diff_in_ms = Math.abs(dateEnd.getTime() - dateStart.getTime());
   console.log(
-    `The Diff in (${timeUnit}) is: `,
-    msConvert(diff_in_ms, timeUnit)
+    `The Diff in (${timeUnit}) is: `
+    // msConvert(diff_in_ms, timeUnit)
   );
   return msConvert(diff_in_ms, timeUnit) || -1;
 };
